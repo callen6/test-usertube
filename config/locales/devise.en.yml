@@ -1,5 +1,5 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
-
+# you can personalize/customize the flash messages devise will show here
 en:
   devise:
     confirmations:
