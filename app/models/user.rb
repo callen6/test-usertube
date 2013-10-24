@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  validates_presence_of :username
+  validates_presence_of :username, :email
   validates_uniqueness_of :username
 
   def self.from_omniauth(auth)
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
 
   def self.new_with_session(params, session)
     if session['devise.user_attributes']
-      new(session['devise.user_attributes'], without_protection: true) do |user|
+      new(session['devise.user_attributes']) do |user|
         user.attributes = params
         user.valid?
         end
