@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-gem 'devise'
+
 gem 'pry'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
@@ -33,6 +33,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'devise'
+
+gem 'omniauth-google-oauth2'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
