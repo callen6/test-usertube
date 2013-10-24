@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
 
-  validates_presence_of :username, :email
+  validates_presence_of :username
   validates_uniqueness_of :username
 
   def self.from_omniauth(auth)
@@ -26,6 +26,14 @@ class User < ActiveRecord::Base
       super
     end
 
+  end
+
+  def password_required?
+    super && provider.blank?
+  end
+
+  def email_required?
+    super && provider.blank?
   end
 
 end
