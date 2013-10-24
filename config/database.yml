@@ -48,3 +48,8 @@ test:
   database: usertube_test
   pool: 5
 
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: usertube_test
+  pool: 5
