@@ -9,13 +9,13 @@ class User < ActiveRecord::Base
 
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
-    user = User.where(:email => data["email"]).first
+    user = User.where(email: data["email"]).first
 
     unless user
-        user = User.create(name: data["name"],
-             email: data["email"],
-             password: Devise.friendly_token[0,20]
-            )
+      user = User.create(name: data["name"],
+           email: data["email"],
+           password: Devise.friendly_token[0,20]
+          )
     end
     user
   end
@@ -47,6 +47,16 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def youtube_client    
+    YouTubeIt::OAuth2Client.new(
+      client_access_token: token, 
+      #client_refresh_token: "refresh_token",
+      client_id: ENV['CLIENT_ID'], 
+      client_secret: ENV['CLIENT_SECRET'], 
+      dev_key: ENV['DEV_KEY'], 
+      expires_at: token_expires_at.to_s)
   end
 
 end
