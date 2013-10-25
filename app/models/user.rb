@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates_presence_of :username
   validates_uniqueness_of :username
 
+  has_and_belongs_to_many :movies
+
   def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
     data = access_token.info
     user = User.where(email: data["email"]).first
@@ -59,5 +61,19 @@ class User < ActiveRecord::Base
       client_token_expires_at: token_expires_at)
   end
 
+  def fetch_movie_history
+    binding.pry
+    watch_history = youtube_client.watch_history
+    watch_history.videos.each do |video|
+      movie_hash = {}
+      movie_hash[:title] = video.title
+      self.movies.create(movie_hash)
+    end
+    # Call to YT to get all the movies
+    # Iterate through all the movies
+      # For each movie, do a self.movies.create(title: movie["title"])
+    # end
+
+  end
 
 end
