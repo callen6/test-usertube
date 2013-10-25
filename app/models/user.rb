@@ -56,8 +56,7 @@ class User < ActiveRecord::Base
       client_secret: ENV['CLIENT_SECRET'], 
       dev_key: ENV['DEV_KEY'],
       client_refresh_token: refresh_token,
-      lient_token_expires_at: token_expires_at)
-  
+      client_token_expires_at: token_expires_at)
   end
 
 
