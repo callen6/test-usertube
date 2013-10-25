@@ -1,9 +1,8 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
-
+  devise :database_authenticatable, :registerable, 
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   validates_presence_of :username
   validates_uniqueness_of :username
@@ -21,12 +20,13 @@ class User < ActiveRecord::Base
     user
   end
 
+
   def self.new_with_session(params, session)
     if session['devise.user_attributes']
       new(session['devise.user_attributes']) do |user|
         user.attributes = params
         user.valid?
-        end
+      end
     else
       super
     end
