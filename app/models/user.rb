@@ -72,7 +72,7 @@ class User < ActiveRecord::Base
       movie.title = video.title
       movie.description = video.description
       movie.link = video.player_url
-      # movie.thumbnail = video.thumbnails[4].url
+      movie.thumbnail = video.thumbnails[4].url
       movie.save
       self.movies << movie
     end
