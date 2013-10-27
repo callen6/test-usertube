@@ -3,3 +3,13 @@ Listing Users
 	<p><%= user.username %></p>
 <% end %>
 
+<% @users.each do |user| %>
+	<% user.movies.each do |movie| %>
+		<p><%= movie.title %></p>
+		<p><%= movie.thumbnail %></p>
+		<p><%= movie.description %></p>
+		<p><%= movie.link %></p>
+	<% end %>
+<% end %>
+
+
