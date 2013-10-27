@@ -6,7 +6,6 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
         @user.token_expires_at = request.env["omniauth.auth"]["credentials"]["expires_at"]
         @user.refresh_token = request.env["omniauth.auth"]["credentials"]["refresh_token"] if request.env["omniauth.auth"]["credentials"]["refresh_token"]
         @user.save
-        binding.pry
         flash[:notice] = I18n.t "devise.omniauth_callbacks.success", kind: "Google"
         sign_in_and_redirect @user, event: :authentication
       else
